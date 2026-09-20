@@ -77,19 +77,20 @@ footer{margin-top:40px;padding-top:16px;border-top:var(--line);color:var(--muted
 
   <p class="kicker"><span>CPSC 1710 · HW2 · Tiny classifier</span></p>
   <h1>Which A24 movie is this?</h1>
-  <p class="lede">Check the things you'd notice while watching. This page guesses which corner of
-  the A24 catalog the movie lives in — and shows you exactly which detail pushed it there.</p>
+  <p class="lede">Read a plot summary — Letterboxd, Wikipedia, the back of the box — and check off what
+  it mentions. This page guesses which corner of the A24 catalog the movie lives in, and shows you
+  exactly which detail pushed it there. <strong>You don't have to have seen the film.</strong></p>
 
   <div class="big-idea">
     <strong>What this is</strong>
-    It learned from 16 real A24 films listed at the bottom. Each signal you check casts a weighted
+    It learned from 19 real A24 films listed at the bottom. Each signal you check casts a weighted
     vote, based on how often that signal showed up in each genre. Nothing is hidden — open
     <em>Show the training movies</em> to see every example it learned from.
   </div>
 
   <div class="grid">
     <section>
-      <h2>1 · What do you notice?</h2>
+      <h2>1 · What does the summary mention?</h2>
       <div class="signals" id="signals"></div>
       <div class="row">
         <button class="button" id="clear">Clear all</button>
@@ -116,7 +117,7 @@ footer{margin-top:40px;padding-top:16px;border-top:var(--line);color:var(--muted
   </div>
 
   <details>
-    <summary>Show the training movies (the 16 examples it learned from)</summary>
+    <summary>Show the training movies (the 19 examples it learned from)</summary>
     <div id="trainTable"></div>
   </details>
 
@@ -137,10 +138,11 @@ const SIGNALS = [
   "Teen protagonist", "Immigrant family story",
   "Sci-fi or supernatural premise", "Unsettling score",
   "Told out of order / memory", "Darkly funny",
-  "First love or heartbreak", "Generational family conflict"
+  "First love or heartbreak", "Generational family conflict",
+  "Frantic, anxiety-inducing pace", "Protagonist in over their head"
 ];
 
-const GENRES = ["Elevated Horror", "Coming-of-Age", "Surreal Sci-Fi", "Quiet Family Drama"];
+const GENRES = ["Elevated Horror", "Coming-of-Age", "Surreal Sci-Fi", "Quiet Family Drama", "Frantic Hustler"];
 
 // ---- The training data: 16 real A24 films, hand-labeled ---------------------
 const FILMS = [
@@ -162,7 +164,11 @@ const FILMS = [
   ["Minari (2020)",      ["Immigrant family story","Generational family conflict","Long silences / slow burn"], "Quiet Family Drama"],
   ["The Farewell (2019)",["Immigrant family story","Generational family conflict","Darkly funny"], "Quiet Family Drama"],
   ["Aftersun (2022)",    ["Grief drives the plot","Told out of order / memory","Long silences / slow burn","Ambiguous ending"], "Quiet Family Drama"],
-  ["Past Lives (2023)",  ["Immigrant family story","First love or heartbreak","Long silences / slow burn","Told out of order / memory"], "Quiet Family Drama"]
+  ["Past Lives (2023)",  ["Immigrant family story","First love or heartbreak","Long silences / slow burn","Told out of order / memory"], "Quiet Family Drama"],
+
+  ["Good Time (2017)",   ["Frantic, anxiety-inducing pace","Protagonist in over their head","Unsettling score","Ambiguous ending"], "Frantic Hustler"],
+  ["Uncut Gems (2019)",  ["Frantic, anxiety-inducing pace","Protagonist in over their head","Unsettling score","Darkly funny"], "Frantic Hustler"],
+  ["Marty Supreme (2025)", ["Frantic, anxiety-inducing pace","Protagonist in over their head","Darkly funny","First love or heartbreak"], "Frantic Hustler"]
 ];
 
 // ---- "Training": count how often each signal shows up in each genre ---------

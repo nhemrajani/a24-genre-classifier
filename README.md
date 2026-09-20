@@ -2,9 +2,10 @@
 
 A tiny classifier for CPSC 1710, Homework 2.
 
-You check off the things you'd notice while watching a movie — cult imagery, long
-silences, a teen protagonist, a darkly funny streak — and the page guesses which
-corner of the A24 catalog it belongs to. Then it shows you the receipts.
+You read a plot summary — Letterboxd, Wikipedia, the back of the box — and check off
+what it mentions: cult imagery, long silences, a teen protagonist, a frantic pace.
+The page guesses which corner of the A24 catalog the movie belongs to, then shows you
+the receipts. You don't need to have seen the film.
 
 ## How to open it
 
@@ -15,7 +16,7 @@ It opens in any browser. No installation, no accounts, no internet needed.
 
 ## How it makes a prediction (in plain language)
 
-It learned from **16 real A24 films** listed at the bottom of the page. I tagged
+It learned from **19 real A24 films** listed at the bottom of the page. I tagged
 each one with the signals it has and labeled it with a genre.
 
 For every signal, it counted how often that signal shows up in each genre compared
@@ -29,7 +30,7 @@ When you check boxes, it adds up the votes for each genre and the highest total 
 The evidence table shows you every individual vote, including the negative ones, plus
 the training movie whose tags most closely match what you picked.
 
-**Inputs:** 14 checkboxes · **Output:** 1 of 4 genres · **Evidence:** per-signal push
+**Inputs:** 16 checkboxes · **Output:** 1 of 5 genres · **Evidence:** per-signal push
 scores, confidence bars, and the nearest training movie.
 
 ## A limitation I found
@@ -43,7 +44,12 @@ _(fill in after testing — Stop 5)_
 2. Changed direction after seeing the first version — swapped the whole subject to
    A24 movies and film genres, which gave the categories real overlap instead of
    invented overlap.
-3. _(next round goes here)_
+3. Reframed the inputs around **plot summaries** instead of "things you'd notice
+   while watching," so someone can test the page without having seen any A24 films.
+4. Added *Marty Supreme* and found it didn't fit any existing label — so I added a
+   fifth genre, Frantic Hustler, with *Good Time* and *Uncut Gems* alongside it, plus
+   two new signals to support it.
+5. _(next round goes here)_
 
 ## Note on the labels
 
