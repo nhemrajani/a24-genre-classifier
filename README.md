@@ -33,6 +33,9 @@ the training movie whose tags most closely match what you picked.
 **Inputs:** 16 checkboxes · **Output:** 1 of 5 genres · **Evidence:** per-signal push
 scores, confidence bars, and the nearest training movie.
 
+Six plot summaries are built into the page to test with. None of them are in the
+training data, so every one is a genuine new case.
+
 ## A limitation I found
 
 _(fill in after testing — Stop 5)_
@@ -49,7 +52,11 @@ _(fill in after testing — Stop 5)_
 4. Added *Marty Supreme* and found it didn't fit any existing label — so I added a
    fifth genre, Frantic Hustler, with *Good Time* and *Uncut Gems* alongside it, plus
    two new signals to support it.
-5. _(next round goes here)_
+5. Realized a visitor had to leave the page to find a plot summary and then come back,
+   so I asked for six summaries to be built into the page itself. I specifically asked
+   that picking a movie **not** auto-check the boxes — reading a summary and deciding
+   what it mentions is the whole exercise, and filling it in would have removed it.
+6. _(next round goes here)_
 
 ## Note on the labels
 

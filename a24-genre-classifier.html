@@ -68,6 +68,16 @@ details{border:var(--line);background:var(--white);padding:12px 15px;margin:16px
 summary{cursor:pointer;font:800 .8rem ui-monospace,Menlo,monospace;text-transform:uppercase;letter-spacing:.05em}
 details[open] summary{margin-bottom:12px}
 .empty{color:var(--muted);font-style:italic}
+.tryreal{border:var(--line);background:#f6f4ed;padding:18px 20px;margin:26px 0 8px}
+.tryreal h2{margin:0 0 10px;font-size:1.3rem}
+.tryreal p{font-size:.92rem;margin:0 0 13px}
+.moviebtn{appearance:none;border:var(--line);background:var(--white);color:var(--ink);
+  padding:7px 11px;cursor:pointer;font:800 .74rem ui-monospace,Menlo,monospace}
+.moviebtn:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink)}
+.moviebtn.on{background:var(--acid)}
+.summary{border:var(--line);background:var(--white);padding:15px 17px;margin-top:13px;font-size:.93rem}
+.summary .stitle{font:900 .95rem ui-monospace,Menlo,monospace;margin-bottom:7px;display:block}
+.summary .snote{display:block;margin-top:10px;font-size:.8rem;color:var(--muted)}
 footer{margin-top:40px;padding-top:16px;border-top:var(--line);color:var(--muted);font-size:.78rem}
 </style>
 </head>
@@ -87,6 +97,16 @@ footer{margin-top:40px;padding-top:16px;border-top:var(--line);color:var(--muted
     vote, based on how often that signal showed up in each genre. Nothing is hidden — open
     <em>Show the training movies</em> to see every example it learned from.
   </div>
+
+  <section class="tryreal">
+    <h2>Try a real movie</h2>
+    <p>Pick one and read the summary, then check off the signals it mentions below.
+    <strong>None of these are in the training data</strong> — the page has never seen them.
+    It deliberately will not check any boxes for you: deciding what a summary mentions is
+    the part only a person can do.</p>
+    <div class="row" id="movieBtns"></div>
+    <div class="summary" id="summaryBox"><em class="empty">No movie picked yet.</em></div>
+  </section>
 
   <div class="grid">
     <section>
@@ -316,6 +336,38 @@ document.getElementById('surprise').addEventListener('click', () => {
     l.classList.toggle('on', on);
   });
   render();
+});
+
+// ---- Plot summaries to test with. None of these are in the training data. ----
+const TESTS = [
+  ["The Whale", "2022",
+   "A reclusive, severely overweight writing teacher runs his online classes with the camera off and never leaves his apartment. Grieving the death of his partner and running out of time, he spends one week trying to reconnect with the teenage daughter he walked out on years earlier."],
+  ["Talk to Me", "2023",
+   "A group of Australian teenagers pass around an embalmed severed hand at parties. Grip it, say the words, and a spirit possesses you for ninety seconds — everyone films it, everyone laughs. A girl still grieving her mother starts holding on for longer than the rules allow."],
+  ["The Green Knight", "2021",
+   "On Christmas Day a green giant rides into King Arthur's hall and offers a game: strike me, and in one year I return the blow. Gawain takes the challenge, then spends the year dreading it before riding out through a strange and shifting country to keep his appointment."],
+  ["Beau Is Afraid", "2023",
+   "A chronically anxious middle-aged man sets out to fly home and visit his mother. Nothing goes right. The journey turns into a sprawling, increasingly unreal odyssey of missed flights, strangers, accidents and guilt, all of it circling his relationship with her."],
+  ["Pearl", "2022",
+   "Stranded on her family's farm in 1918 while her husband is away at war, a young woman dreams of dancing in the pictures. Her invalid father and severe mother stand in the way, and her ambition curdles into something violent."],
+  ["The Drama", "2026",
+   "A Boston couple are a week away from their wedding when a game of confessing your worst act goes badly wrong, and the bride admits to something from her teenage years that her fiancé cannot un-hear. What follows tests how well two people who love each other actually know each other."]
+];
+
+const btnRow = document.getElementById('movieBtns');
+const sumBox = document.getElementById('summaryBox');
+TESTS.forEach(([title, year, blurb]) => {
+  const b = document.createElement('button');
+  b.className = 'moviebtn';
+  b.textContent = title;
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.moviebtn').forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+    sumBox.innerHTML = '<span class="stitle">' + title + ' (' + year + ')</span>' + blurb
+      + '<span class="snote">Now check the signals this summary mentions — only what is actually '
+      + 'in the text above, not what you know from the trailer. Then look at the verdict.</span>';
+  });
+  btnRow.appendChild(b);
 });
 
 document.getElementById('trainTable').innerHTML =
