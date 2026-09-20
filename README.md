@@ -1,11 +1,40 @@
 # Which A24 movie is this?
 
-A tiny classifier for CPSC 1710, Homework 2.
+**Neeharika Hemrajani · nh599 · CPSC 1710, Homework 2 (September 2026)**
 
 You read a plot summary — Letterboxd, Wikipedia, the back of the box — and check off
 what it mentions: cult imagery, long silences, a teen protagonist, a frantic pace.
 The page guesses which corner of the A24 catalog the movie belongs to, then shows you
 the receipts. You don't need to have seen the film.
+
+## About this project
+
+This was built for **CPSC 1710: Intro to AI Apps**, Homework 2 — *"From One Pixel to
+Your Classifier."* The brief was to invent a classification problem slightly more
+complicated than the course's [One Pixel ML lab](https://xiuyechen.github.io/cpsc1710-labs/lab-02/),
+then direct an AI coding agent to build a working page for it, test it like an
+experimenter, and improve it based on what the testing revealed.
+
+The assignment's two rules shaped everything here:
+
+1. **The page has to show its reasoning, not just an answer.** A visitor should see
+   evidence, not a verdict. That's why every prediction comes with a table of
+   per-signal push scores, including the ones arguing *against* the answer.
+2. **The point is directing the work, not writing the code.** The development log
+   below records the moments I changed direction. The most useful one was #6, where
+   the fix turned out to be in the data rather than the model.
+
+The starter lab it builds on teaches that *labels create the task* — the same twelve
+grey pixels become a different learning problem depending on how you label them. This
+page is an attempt to show the same idea one layer up, where the **inputs** create the
+task too: which boxes a reader decides to tick changes the answer more than the film does.
+
+### How it was built
+
+Written with Claude Code (Claude Opus 5) across a single session. I chose the subject,
+the labels, the signals and the training films, decided what to test and what was
+wrong with it, and directed each round of changes; the agent wrote the HTML, CSS and
+JavaScript and made the commits. The git history shows the sequence.
 
 ## How to open it
 
@@ -23,8 +52,8 @@ For every signal, it counted how often that signal shows up in each genre compar
 to how often it shows up on average. That comparison becomes the signal's **weight**:
 
 - "Cult or ritual imagery" appears in 3 of 4 horror films and almost nowhere else,
-  so it votes hard for Elevated Horror.
-- "Darkly funny" appears in all four genres, so it barely votes at all.
+  so it votes hard for Elevated Horror (+1.13).
+- "Darkly funny" appears in all five genres, so it barely votes at all (+0.03).
 
 When you check boxes, it adds up the votes for each genre and the highest total wins.
 The evidence table shows you every individual vote, including the negative ones, plus
@@ -81,3 +110,15 @@ The films are real. The genre labels and signal tags are my own judgment calls �
 A24 doesn't officially sort its catalog this way. That's the lesson from the One
 Pixel lab: the same data becomes a different learning problem when you change the
 labels.
+
+The six plot summaries in the "Try a real movie" panel were written for this project.
+Five are condensed from the films themselves; *The Drama* (2026) is condensed from its
+Wikipedia plot section. They are deliberately written to a fixed template so that two
+different readers have a fair chance of ticking the same boxes — see the limitation
+above for why that turned out to matter.
+
+## Credits
+
+Starter lab and assignment by Xiuye Chen, CPSC 1710.
+Assignment text drafted by Codex (OpenAI) from the instructor's teaching goals.
+This page built with Claude Code.
