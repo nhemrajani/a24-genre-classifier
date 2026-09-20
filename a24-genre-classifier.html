@@ -103,7 +103,9 @@ footer{margin-top:40px;padding-top:16px;border-top:var(--line);color:var(--muted
     <p>Pick one and read the summary, then check off the signals it mentions below.
     <strong>None of these are in the training data</strong> — the page has never seen them.
     It deliberately will not check any boxes for you: deciding what a summary mentions is
-    the part only a person can do.</p>
+    the part only a person can do. Every summary covers the same ground — who the main
+    character is and roughly how old, where it happens and whether it stays there, the tone,
+    and how it ends — so you can answer from the text instead of from memory.</p>
     <div class="row" id="movieBtns"></div>
     <div class="summary" id="summaryBox"><em class="empty">No movie picked yet.</em></div>
   </section>
@@ -341,17 +343,22 @@ document.getElementById('surprise').addEventListener('click', () => {
 // ---- Plot summaries to test with. None of these are in the training data. ----
 const TESTS = [
   ["The Whale", "2022",
-   "A reclusive, severely overweight writing teacher runs his online classes with the camera off and never leaves his apartment. Grieving the death of his partner and running out of time, he spends one week trying to reconnect with the teenage daughter he walked out on years earlier."],
+   "Charlie is a man in his forties who teaches online writing classes with his camera switched off. Severely overweight and in heart failure, he has not left his apartment in years, and neither does the film \u2014 every scene happens in those rooms, across one week. Still grieving the partner whose death he blames himself for, he tries to reconnect with Ellie, the seventeen-year-old daughter he walked out on, who turns up furious and stays that way. The tone is earnest and unrelieved, the story runs straight through in order, and the ending is not left open."],
+
   ["Talk to Me", "2023",
-   "A group of Australian teenagers pass around an embalmed severed hand at parties. Grip it, say the words, and a spirit possesses you for ninety seconds — everyone films it, everyone laughs. A girl still grieving her mother starts holding on for longer than the rules allow."],
+   "A group of Australian seventeen-year-olds pass around an embalmed severed hand at house parties. You grip it, say a fixed phrase, and a spirit takes over your body for exactly ninety seconds while your friends film it. Mia, whose mother died two years ago, starts holding on past the ninety-second limit so she can keep seeing her. The injuries that follow are shown in unflinching close-up, including self-inflicted ones, and the score is a low mechanical drone. It is told in order and the ending is bleak and unambiguous."],
+
   ["The Green Knight", "2021",
-   "On Christmas Day a green giant rides into King Arthur's hall and offers a game: strike me, and in one year I return the blow. Gawain takes the challenge, then spends the year dreading it before riding out through a strange and shifting country to keep his appointment."],
+   "Medieval Britain. Gawain is a young man, King Arthur\u2019s nephew, who has so far done nothing with his life. On Christmas Day a towering figure made of bark and moss rides into the hall and proposes a game: land a blow on me now, and in one year I return the same blow to you. Gawain beheads him; the figure picks up its own head and leaves. A year later Gawain rides out to keep the appointment, crossing a whole country of giants, thieves and ghosts. The pace is slow, the dialogue sparse, and the final scene cuts away before you are told what happens to him."],
+
   ["Beau Is Afraid", "2023",
-   "A chronically anxious middle-aged man sets out to fly home and visit his mother. Nothing goes right. The journey turns into a sprawling, increasingly unreal odyssey of missed flights, strangers, accidents and guilt, all of it circling his relationship with her."],
+   "Beau is a deeply anxious man in his late forties, in therapy, due to fly home and visit his mother. He misses the flight, his apartment is robbed, he is hit by a truck, and from there the film never slows down \u2014 through a stranger\u2019s suburban house, a travelling theatre troupe in a forest, and finally his mother\u2019s estate. Events escalate faster than Beau can react to them and he is out of his depth in every scene. Much of it is played for uncomfortable laughs, and almost everything that happens turns out to lead back to his mother."],
+
   ["Pearl", "2022",
-   "Stranded on her family's farm in 1918 while her husband is away at war, a young woman dreams of dancing in the pictures. Her invalid father and severe mother stand in the way, and her ambition curdles into something violent."],
+   "Texas, 1918. Pearl is a young married woman living on her parents\u2019 farm while her husband is away at war. Her mother is severe and controlling, her father is paralysed and cannot speak, and Pearl is expected to nurse him. She dreams of being picked for a travelling dance troupe and getting out. Almost every scene takes place on that farm. The violence, when it comes, is close-up and physical \u2014 a pitchfork, an axe, a body left in the heat \u2014 while the music stays lush and old-fashioned, in the style of a 1950s musical. It ends on one long unbroken shot of her face."],
+
   ["The Drama", "2026",
-   "A Boston couple are a week away from their wedding when a game of confessing your worst act goes badly wrong, and the bride admits to something from her teenage years that her fiancé cannot un-hear. What follows tests how well two people who love each other actually know each other."]
+   "Emma and Charlie, both around thirty, met in a Boston caf\u00e9 and are a week from their wedding. During an evening in which their wedding party confess the worst things they have ever done, Emma admits that as a teenager she planned a school shooting and abandoned it, and that the deafness she had always called congenital came from firing a rifle beside her ear. The week that follows is mostly comic and painfully awkward \u2014 Charlie spirals, a friendship collapses, the reception speeches go badly \u2014 and it moves between their offices, flats and the wedding venue rather than staying anywhere. It is told in order, and the last scene is clear: the two of them meet again at a diner and introduce themselves as strangers."]
 ];
 
 const btnRow = document.getElementById('movieBtns');

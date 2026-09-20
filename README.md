@@ -38,7 +38,19 @@ training data, so every one is a genuine new case.
 
 ## A limitation I found
 
-_(fill in after testing — Stop 5)_
+Testing three films showed that the prediction often rests on a **single** checkbox.
+"Teen protagonist" appears in four training films and all four are Coming-of-Age, so
+ticking it alone decides the answer — it predicted Coming-of-Age for *Pearl*, a horror
+film, at 75% confidence. "Mostly one location" was learned from four horror films and
+*Ex Machina* and nothing else, so it dragged *The Drama*, a romantic comedy, to 48%
+Elevated Horror.
+
+The deeper problem was **not** in the model. My first set of plot summaries was written
+in a vague, literary style that never stated how old the characters were, whether the
+story stayed in one place, or what the tone was. With nothing to go on, a reader fills
+the gaps from what they already know about the film — which is exactly what happened in
+all three of my tests. I rewrote all six summaries to cover the same ground every time.
+The classifier did not change; the inputs did.
 
 ## Development log
 
@@ -56,7 +68,12 @@ _(fill in after testing — Stop 5)_
    so I asked for six summaries to be built into the page itself. I specifically asked
    that picking a movie **not** auto-check the boxes — reading a summary and deciding
    what it mentions is the whole exercise, and filling it in would have removed it.
-6. _(next round goes here)_
+6. Tested three films and kept getting confident wrong answers. Rather than change the
+   classifier, I worked out that the plot summaries were the problem — they were written
+   too vaguely for anyone unfamiliar with the film to judge, so testers were answering
+   from memory instead of from the text. Asked for all six to be rewritten to a
+   consistent template: who the character is and roughly how old, where it happens and
+   whether it stays there, the tone, and how it ends.
 
 ## Note on the labels
 
